@@ -15,14 +15,14 @@ A modern, elegant website for Agentic Solutions - a company specializing in cust
 2. **About AI Agents**: Educational section explaining what AI agents are and their benefits
 3. **Services**: Overview of all services including the featured All-Inclusive AI Package
 4. **Solutions**: Detailed descriptions of specific AI agent types:
-   - Document Processing Agent
+   - Invoice Processing Agent
    - Customer Service Agent
    - Booking & Scheduling Agent
    - Data Entry Agent
    - Social Media Agent
    - Business Insights Agent
-5. **Consultation Form**: Interactive form with budget range selection
-6. **Footer**: Contact information and quick links
+5. **Consultation Form**: Interactive form for potential clients
+6. **Footer**: Contact information and social media links
 
 ### Interactive Features
 - Smooth scrolling navigation
@@ -63,6 +63,8 @@ A modern, elegant website for Agentic Solutions - a company specializing in cust
      │   └── style.css
      ├── js/
      │   └── script.js
+     ├── images/
+     │   └── logo.svg
      └── README.md
      ```
 
@@ -86,10 +88,7 @@ Edit the CSS variables in `css/style.css`:
 - Modify form fields as needed
 
 ### Form Backend
-The consultation form currently simulates submission. To make it functional:
-1. Replace the form submission code in `js/script.js`
-2. Set up a backend endpoint to receive form data
-3. Update the email address and phone number
+The consultation form sends emails to info@agenticsolutionsllc.com using a mailto link.
 
 ## Technologies Used
 - HTML5
@@ -105,13 +104,9 @@ The consultation form currently simulates submission. To make it functional:
 - Edge (latest)
 - Mobile browsers
 
-## Future Enhancements
-- Add a blog section
-- Implement case studies/portfolio
-- Add testimonials section
-- Integrate with a CMS
-- Add multi-language support
-- Implement live chat feature
+## Contact
+- Email: info@agenticsolutionsllc.com
+- Facebook: [Agentic Solutions](https://www.facebook.com/profile.php?id=61577005040302)
 
 ## License
-© 2024 Agentic Solutions. All rights reserved. 
+© 2024 Agentic Solutions, LLC. All rights reserved.
