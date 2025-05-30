@@ -96,7 +96,7 @@ consultationForm.addEventListener('submit', async (e) => {
     submitButton.disabled = true;
     
     try {
-        // Send email using EmailJS
+        // Prepare email data
         const emailData = {
             to_email: 'info@agenticsolutionsllc.com',
             from_name: data.name,
@@ -104,40 +104,66 @@ consultationForm.addEventListener('submit', async (e) => {
             company: data.company || 'Not provided',
             phone: data.phone || 'Not provided',
             message: data.message || 'No additional details provided',
-            subject: `New Consultation Request from ${data.name}`
+            subject: `New Consultation Request from ${data.name}`,
+            reply_to: data.email
         };
-        
-        // Using EmailJS service (you'll need to set up EmailJS account and get service ID, template ID, and public key)
-        // For now, I'll create a simple email mailto link as a fallback
-        const emailBody = `
-New consultation request received:
 
-Name: ${emailData.from_name}
-Email: ${emailData.from_email}
-Company: ${emailData.company}
-Phone: ${emailData.phone}
+        // Send email using EmailJS
+        const response = await emailjs.send(
+            'service_your_service_id', // Replace with your EmailJS service ID
+            'template_your_template_id', // Replace with your EmailJS template ID
+            {
+                to_email: emailData.to_email,
+                from_name: emailData.from_name,
+                from_email: emailData.from_email,
+                company: emailData.company,
+                phone: emailData.phone,
+                message: emailData.message,
+                subject: emailData.subject,
+                reply_to: emailData.reply_to
+            },
+            'your_public_key' // Replace with your EmailJS public key
+        );
 
-Message:
-${emailData.message}
-
-Please follow up with this prospect as soon as possible.
-        `;
-        
-        // Create mailto link
-        const mailtoLink = `mailto:info@agenticsolutionsllc.com?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailBody)}`;
-        
-        // Open default email client
-        window.location.href = mailtoLink;
-        
-        // Show success message
-        showNotification('Your consultation request has been sent! We\'ll be in touch within 24 hours.', 'success');
-        
-        // Reset form
-        consultationForm.reset();
+        if (response.status === 200) {
+            // Show success message
+            showNotification('Your consultation request has been sent! We\'ll be in touch within 24 hours.', 'success');
+            
+            // Reset form
+            consultationForm.reset();
+        } else {
+            throw new Error('Failed to send email');
+        }
         
     } catch (error) {
         console.error('Form submission error:', error);
-        showNotification('Something went wrong. Please try again or contact us directly at info@agenticsolutionsllc.com', 'error');
+        
+        // Fallback to a server endpoint if EmailJS fails
+        try {
+            const response = await fetch('/api/send-consultation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    company: data.company || 'Not provided',
+                    phone: data.phone || 'Not provided',
+                    message: data.message || 'No additional details provided'
+                })
+            });
+
+            if (response.ok) {
+                showNotification('Your consultation request has been sent! We\'ll be in touch within 24 hours.', 'success');
+                consultationForm.reset();
+            } else {
+                throw new Error('Server error');
+            }
+        } catch (backupError) {
+            console.error('Backup submission error:', backupError);
+            showNotification('Something went wrong. Please try again or contact us directly at info@agenticsolutionsllc.com', 'error');
+        }
     } finally {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
