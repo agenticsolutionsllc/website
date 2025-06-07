@@ -90,8 +90,8 @@ consultationForm.addEventListener('submit', function(event) {
     submitButton.disabled = true;
 
     // These IDs should be replaced with your actual EmailJS IDs
-    const serviceID = 'YOUR_SERVICE_ID';
-    const templateID = 'YOUR_TEMPLATE_ID';
+    const serviceID = 'service_xy1m6jb';
+    const templateID = 'template_svlk01d';
 
     const templateParams = {
         name: this.name.value,
