@@ -90,10 +90,19 @@ consultationForm.addEventListener('submit', function(event) {
     submitButton.disabled = true;
 
     // These IDs should be replaced with your actual EmailJS IDs
-    const serviceID = 'service_xy1m6jb';
+    const serviceID = 'YOUR_SERVICE_ID';
     const templateID = 'YOUR_TEMPLATE_ID';
 
-    emailjs.sendForm(serviceID, templateID, this)
+    const templateParams = {
+        name: this.name.value,
+        from_email: this.email.value,
+        company: this.company.value,
+        phone: this.phone.value,
+        message: this.message.value,
+        reply_to: this.email.value
+    };
+
+    emailjs.send(serviceID, templateID, templateParams)
         .then(() => {
             submitButton.textContent = 'Schedule Consultation';
             submitButton.disabled = false;
