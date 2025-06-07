@@ -94,11 +94,11 @@ consultationForm.addEventListener('submit', function(event) {
     const templateID = 'template_svlk01d';
 
     const templateParams = {
-        name: this.name.value,
-        from_email: this.email.value,
-        company: this.company.value,
-        phone: this.phone.value,
-        message: this.message.value,
+        full_name: this.name.value,
+        email_address: this.email.value,
+        company_name: this.company.value,
+        phone_number: this.phone.value,
+        business_description: this.message.value,
         reply_to: this.email.value
     };
 
