@@ -151,13 +151,18 @@ a {
 
 .nav-link.btn-primary {
     background: var(--gradient-primary);
-    color: white;
+    color: white !important;
     padding: 0.5rem 1.5rem;
     border-radius: 0.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .nav-link.btn-primary:hover {
+    background: var(--gradient-primary);
+    color: white !important;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -222,6 +227,15 @@ a {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.subtitle-accent {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--accent-color);
+    margin-top: 0.5rem;
+    display: inline-block;
+    opacity: 0.9;
 }
 
 .hero-subtitle {
@@ -446,6 +460,191 @@ a {
 .opportunity-item p {
     color: var(--text-secondary);
     line-height: 1.7;
+}
+
+/* Not Just Automation Section */
+.not-just-automation {
+    padding: 80px 0;
+    background-color: var(--dark-bg);
+}
+
+.automation-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.automation-explanation {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.automation-explanation h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.automation-explanation p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.collaboration-example {
+    background: var(--dark-bg-secondary);
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border-color);
+}
+
+.collaboration-example h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.example-workflow {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.workflow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--dark-bg);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.workflow-step:hover {
+    border-color: var(--primary-color);
+    transform: translateX(10px);
+}
+
+.workflow-step .step-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.workflow-step .step-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.step-content h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.workflow-arrow {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.collaboration-benefits h3 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.benefits-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.benefit-column {
+    background: var(--dark-bg-secondary);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.benefit-column h4 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.benefit-column h4 i {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+}
+
+.benefit-column ul {
+    list-style: none;
+}
+
+.benefit-column li {
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.benefit-column li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.efficiency-note {
+    background: linear-gradient(135deg, var(--dark-bg-secondary) 0%, var(--dark-bg-tertiary) 100%);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--primary-color);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.efficiency-note i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.efficiency-note p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.efficiency-note strong {
+    color: var(--primary-color);
 }
 
 /* Services Section */
@@ -906,6 +1105,10 @@ a {
 
     .hero-subtitle {
         font-size: 1.1rem;
+    }
+
+    .subtitle-accent {
+        font-size: 1rem;
     }
 
     .hero-visual {

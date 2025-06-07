@@ -82,92 +82,29 @@ window.addEventListener('scroll', () => {
 // Form Submission
 const consultationForm = document.getElementById('consultation-form');
 
-consultationForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(consultationForm);
-    const data = Object.fromEntries(formData);
-    
-    // Show loading state
-    const submitButton = consultationForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
+consultationForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const submitButton = this.querySelector('button[type="submit"]');
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
-    
-    try {
-        // Prepare email data
-        const emailData = {
-            to_email: 'info@agenticsolutionsllc.com',
-            from_name: data.name,
-            from_email: data.email,
-            company: data.company || 'Not provided',
-            phone: data.phone || 'Not provided',
-            message: data.message || 'No additional details provided',
-            subject: `New Consultation Request from ${data.name}`,
-            reply_to: data.email
-        };
 
-        // Send email using EmailJS
-        const response = await emailjs.send(
-            'service_your_service_id', // Replace with your EmailJS service ID
-            'template_your_template_id', // Replace with your EmailJS template ID
-            {
-                to_email: emailData.to_email,
-                from_name: emailData.from_name,
-                from_email: emailData.from_email,
-                company: emailData.company,
-                phone: emailData.phone,
-                message: emailData.message,
-                subject: emailData.subject,
-                reply_to: emailData.reply_to
-            },
-            'your_public_key' // Replace with your EmailJS public key
-        );
+    // These IDs should be replaced with your actual EmailJS IDs
+    const serviceID = 'service_xy1m6jb';
+    const templateID = 'YOUR_TEMPLATE_ID';
 
-        if (response.status === 200) {
-            // Show success message
+    emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+            submitButton.textContent = 'Schedule Consultation';
+            submitButton.disabled = false;
             showNotification('Your consultation request has been sent! We\'ll be in touch within 24 hours.', 'success');
-            
-            // Reset form
             consultationForm.reset();
-        } else {
-            throw new Error('Failed to send email');
-        }
-        
-    } catch (error) {
-        console.error('Form submission error:', error);
-        
-        // Fallback to a server endpoint if EmailJS fails
-        try {
-            const response = await fetch('/api/send-consultation', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: data.name,
-                    email: data.email,
-                    company: data.company || 'Not provided',
-                    phone: data.phone || 'Not provided',
-                    message: data.message || 'No additional details provided'
-                })
-            });
-
-            if (response.ok) {
-                showNotification('Your consultation request has been sent! We\'ll be in touch within 24 hours.', 'success');
-                consultationForm.reset();
-            } else {
-                throw new Error('Server error');
-            }
-        } catch (backupError) {
-            console.error('Backup submission error:', backupError);
+        }, (err) => {
+            submitButton.textContent = 'Schedule Consultation';
+            submitButton.disabled = false;
             showNotification('Something went wrong. Please try again or contact us directly at info@agenticsolutionsllc.com', 'error');
-        }
-    } finally {
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }
+            console.error('EmailJS error:', err);
+        });
 });
 
 // Notification System
