@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
 // Email configuration
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     service: 'gmail', // You can use other services like SendGrid, Mailgun, etc.
     auth: {
         user: process.env.EMAIL_USER, // Your email address

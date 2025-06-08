@@ -120,7 +120,7 @@ a {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -152,12 +152,13 @@ a {
 .nav-link.btn-primary {
     background: var(--gradient-primary);
     color: white !important;
-    padding: 0.5rem 1.5rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 0.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     text-decoration: none;
     white-space: nowrap;
+    font-size: 0.85rem;
 }
 
 .nav-link.btn-primary:hover {
@@ -839,6 +840,111 @@ a {
     line-height: 1.6;
 }
 
+/* Our Technology Section */
+.our-technology {
+    padding: 80px 0;
+    background-color: var(--dark-bg);
+}
+
+.technology-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.technology-explanation {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.technology-explanation p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.technology-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.comparison-column {
+    background: var(--dark-bg-secondary);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.comparison-column:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.comparison-column:first-child {
+    border-color: var(--primary-color);
+}
+
+.column-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.column-header i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.comparison-column:last-child .column-header i {
+    color: var(--text-muted);
+}
+
+.column-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.comparison-column ul {
+    list-style: none;
+}
+
+.comparison-column li {
+    display: grid;
+    grid-template-columns: auto 160px 1fr;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    min-height: 3rem;
+    align-items: start;
+}
+
+.comparison-column li i {
+    margin-top: 5px;
+    font-size: 1.1rem;
+}
+
+.comparison-column:first-child li i {
+    color: var(--accent-color);
+}
+
+.comparison-column:last-child li i {
+    color: #ef4444; /* A red color for the 'times' icon */
+}
+
+.comparison-column li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.comparison-column li:last-child {
+    margin-bottom: 0;
+}
+
 /* Solutions Section */
 .solutions {
     padding: 80px 0;
@@ -1196,6 +1302,15 @@ a {
     .opportunities-section h3 {
         font-size: 1.5rem;
         margin-bottom: 2rem;
+    }
+
+    .technology-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
     }
 }
 
