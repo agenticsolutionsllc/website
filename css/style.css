@@ -1092,11 +1092,11 @@ a {
 .footer-brand .logo {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .footer-brand .logo-image {
-    height: 200px;
+    height: 350px;
     width: auto;
 }
 
